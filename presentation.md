@@ -28,24 +28,6 @@ layout: true
 
 ---
 
-## The NiPreps ecosystem
-
-<div align="center" style="margin-top: 1em">
-<img alt="The NiPreps framework" src="https://nipreps.org/assets/nipreps-chart.png" width="70%" />
-</div>
-
----
-
-## The NiPreps ecosystem
-
-<div align="center" style="margin-top: 1em">
-<img alt="The NiPreps framework" src="assets/nipreps-baby.png" width="70%" />
-</div>
-
-*NiBabies* is the new baby of the *NiPreps* (NeuroImaging PREProcessing toolS) family.
-
----
-
 ## NiBabies
 
 *NiBabies* is a direct descendant of [*fMRIPrep*](https://fmriprep.org/en/stable/), a functional MRI preprocessing pipeline.
@@ -68,6 +50,24 @@ These challenges require a specialized workflow, extending *fMRIPrep* quality fo
 ???
 
 *fMRIPrep* is a great tool for adult MRI acquistions, but ultimately is designed for (and evaluated with) adult datasets.
+
+---
+
+## The NiPreps ecosystem
+
+<div align="center" style="margin-top: 1em">
+<img alt="The NiPreps framework" src="https://nipreps.org/assets/nipreps-chart.png" width="70%" />
+</div>
+
+---
+
+## The NiPreps ecosystem
+
+<div align="center" style="margin-top: 1em">
+<img alt="The NiPreps framework" src="assets/nipreps-baby.png" width="70%" />
+</div>
+
+*NiBabies* is the new baby of the *NiPreps* (NeuroImaging PREProcessing toolS) family.
 
 ---
 layout: true
