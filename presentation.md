@@ -35,8 +35,16 @@ layout: true
 --
 
 The widespread adoption of *fMRIPrep* revealed neuroscientists' desires for:
+--
+
 * simplification and standardization of data analysis workflows
+
+--
+
 * quality assurance visual reporting
+
+--
+
 * open-source software encouraging discussion and collaboration
 
 --
@@ -100,12 +108,22 @@ template: BIDS
 ---
 
 .pull-right[
-- When converting a dataset to the BIDS format, we recommend validating with the online [BIDS Validator](https://bids-standard.github.io/bids-validator/).
+- Builds on existing standards (NIfTI, JSON, TSV)
+- Intended for human *and* machine legibility
+- The [specification](https://bids-specification.readthedocs.io/en/stable/)
+  is a searchable HTML document
 ]
 
 --
+
 .pull-right[
 - Prior to running the workflow, *NiBabies* will run a quick validation to ensure the input dataset is BIDS compliant.
+]
+
+--
+
+.pull-right[
+- If you would like to check if your dataset is BIDS valid, we recommend using the online [BIDS Validator](https://bids-standard.github.io/bids-validator/).
 ]
 
 ???
@@ -120,7 +138,7 @@ There are many tools available to facilitate conversion to BIDS format.
 
 .pull-right[
 
-* The minimal data acquisitions necessary for running *NiBabies* are:
+- The minimal data acquisitions necessary for running *NiBabies* are:
     - T1w (`anat/*T1w.nii.gz`)
     - T2w (`anat/*T2w.nii.gz`)
     - At least one functional (task or resting-state) (`func/*bold.nii.gz`)
@@ -237,9 +255,14 @@ docker /path/to/data /output/path participant \  # required arguments
 --fs-license-file /path/to/license.txt
 ```
 
+???
+
+Note that the paths used are just placeholders.
+When running on your data, substitute with your paths.
+
 --
 
-We will get an output similar to this:
+Once that is run, we should get an output similar to this:
 
 ```bash
 RUNNING: docker run --rm -e DOCKER_VERSION_8395080871=20.10.6 -it \
@@ -260,7 +283,7 @@ nipreps/nibabies:21.0.2 /data /out participant \
 
 ## Results
 
-After some processing hours, *NiBabies* should complete and produce outputs. These outputs conform to the BIDS Derivatives specification.
+After some processing hours, *NiBabies* should complete and produce outputs. These outputs conform to the [BIDS Derivatives specification](https://bids-specification.readthedocs.io/en/stable/05-derivatives/01-introduction.html).
 
 --
 
@@ -292,6 +315,27 @@ The default standard output space for *NiBabies* is the `MNI Infant` template [F
 
 ---
 
+## Additional Options
+
+*NiBabies* includes multiple command line flags that can be used to fine-tune your preprocessing.
+
+--
+
+To view all these options, we can run
+
+```bash
+$ nibabies-wrapper -h
+```
+
+???
+
+Some of note include:
+`--output-spaces` - can set standard and nonstandard (T1w, func) spaces for BOLD to be resampled to
+`--cifti-output` - produces a CIFTI-2 file that follows the “grayordinates” specification proposed by the Human Connectome Project
+`--fd-radius` - Head radius in mm for framewise displacement calculation
+
+---
+
 ## Future Directions
 
 *NiBabies* is still a young project, but with that comes the advantage of rapid development.
@@ -312,5 +356,5 @@ class: center middle
 # Thank You
 #### Questions?
 #### Comments?
-#### Critiques?
+#### Suggestions?
 ##### [Contact us on GitHub](https://github.com/nipreps/nibabies/issues/new/choose)
