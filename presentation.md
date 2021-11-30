@@ -34,7 +34,13 @@ layout: true
 <img alt="The NiPreps framework" src="https://nipreps.org/assets/nipreps-chart.png" width="70%" />
 </div>
 
---
+---
+
+## The NiPreps ecosystem
+
+<div align="center" style="margin-top: 1em">
+<img alt="The NiPreps framework" src="assets/nipreps-baby.png" width="70%" />
+</div>
 
 *NiBabies* is the new baby of the *NiPreps* (NeuroImaging PREProcessing toolS) family.
 
@@ -66,7 +72,7 @@ layout: true
 template: footer
 name: BIDS
 
-## Prerequisites
+## Prerequisites - BIDS
 
 ---
 layout: true
@@ -81,7 +87,7 @@ template: BIDS
 - *NiBabies* leverages the [Brain Imaging Data Structure (BIDS)](https://bids.neuroimaging.io/) format.
 ]
 
----
+--
 
 .pull-right[
 - By requiring the data this in this format, the workflow is able to:
@@ -124,18 +130,12 @@ template: footer
 ## Installation
 
 ### Containers
-The easiest way to get started is by using a container service, such as *[Docker](https://www.docker.com/get-started)* or *[Singularity](https://sylabs.io/singularity)*.
+The easiest way to get started is by using a container service, such as
+- *[Docker](https://www.docker.com/get-started)*
+- *[Singularity](https://sylabs.io/singularity)*
 
-<div id="banner" style="overflow: hidden;justify-content:space-around;">
-<div class="" style="max-width: 20%;max-height: 20%;display: inline-block;">
-    <img alt="Docker-logo" src="assets/docker-logo.png" />
-</div>
-
-<div class="" style="max-width: 100%;max-height: 100%;display: inline-block;">
-    <img alt="Singularity-logo" src="assets/singularity-logo.png" />
-</div>
-</div>
-
+<img alt="Docker" src="assets/docker-logo.png" align="left" width="50px" height="50px" />
+<img alt="Singularity" src="assets/singularity-logo.png" align="right" width="50px" height="50px" />
 --
 
 These contained environments come bundled with all necessary underlying software (FreeSurfer, FSL, ANTS, etc) required to use *NiBabies*.
@@ -186,9 +186,9 @@ $ nibabies-wrapper --version
 ### Required positional arguments
 At minimum, the following positional arguments are required:
 
-- `bids_dir` - the root folder of a BIDS valid dataset.
-- `output_dir` - folder to store outputs and reports.
-- `level` - processing stage to be run, currently can only be participant.
+- `bids directory` - the root folder of a BIDS valid dataset.
+- `output directory` - folder to store outputs and reports.
+- `analysis level` - processing stage to be run, currently can only be participant.
 
 --
 
@@ -199,11 +199,19 @@ However, as infant brains can vastly differ depending on age, providing the foll
 - `--participant-id` - participant ID (This will process an individual participant and is recommended if age varies across participants)
 - `--segmentation-atlases-dir` - directory containing pre-labeled segmentations to use for Joint Label Fusion.
 
---
+---
+
+## Usage (cont.)
 
 Additionally, *NiBabies* uses FreeSurfer tools, which require a license to run.
 
 To obtain a FreeSurfer license, simply register for free at https://surfer.nmr.mgh.harvard.edu/registration.html.
+
+--
+
+The license can be passed in using the flag `--fs-license-file`.
+
+However, when using the `nibabies-wrapper`, if `$FSLICENSE` is set to the license's path, it will be detected and automatically used.
 
 
 ---
@@ -221,12 +229,14 @@ $ nibabies-wrapper \
 docker /path/to/data /output/path participant \  # required arguments
 --participant-id 01 --age-months 2 \
 --segmentation-atlases-dir /path/to/segmentations \
---fs-license-file /path/to/license
+--fs-license-file /path/to/license.txt
 ```
 
 --
 
-```
+We should get something resembling this:
+
+```bash
 RUNNING: docker run --rm -e DOCKER_VERSION_8395080871=20.10.6 -it \
 -v /path/to/license.txt:/opt/freesurfer/license.txt:ro \
 -v /path/to/data:/data:ro \
