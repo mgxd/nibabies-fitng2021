@@ -6,7 +6,7 @@ class: center middle
 #### Center for Reproducible Neuroscience
 #### Stanford University
 
-###### [mgxd.github.io/nibabies-2021](https://mgxd.github.io/nibabies-fitng2021)
+###### [mgxd.github.io/nibabies-fitng2021](https://mgxd.github.io/nibabies-fitng2021)
 
 ---
 name: footer
@@ -61,6 +61,8 @@ The widespread adoption of *fMRIPrep* revealed neuroscientists' desires for:
 
 However, infant MRI presents unique challenges due to head size, as well as rapid shifting in tissue contrast due to myelination.
 
+--
+
 These challenges require a specialized workflow, extending *fMRIPrep* quality for infant structural and functional MRI.
 
 ???
@@ -100,6 +102,8 @@ template: BIDS
 .pull-right[
 - When converting a dataset to the BIDS format, we recommend validating with the online [BIDS Validator](https://bids-standard.github.io/bids-validator/).
 
+--
+
 - Prior to running the workflow, *NiBabies* will run a quick validation to ensure the input dataset is BIDS compliant.
 ]
 
@@ -134,8 +138,6 @@ The easiest way to get started is by using a container service, such as
 - *[Docker](https://www.docker.com/get-started)*
 - *[Singularity](https://sylabs.io/singularity)*
 
-<img alt="Docker" src="assets/docker-logo.png" align="left" width="50px" height="50px" />
-<img alt="Singularity" src="assets/singularity-logo.png" align="right" width="50px" height="50px" />
 --
 
 These contained environments come bundled with all necessary underlying software (FreeSurfer, FSL, ANTS, etc) required to use *NiBabies*.
@@ -165,7 +167,7 @@ It will create, print, and execute the generated command.
 
 --
 
-The script is a lightweight Python 2/3 script. To install or upgrade to the current release:
+The wrapper is a lightweight Python 2/3 script. To install or upgrade to the current release:
 
 ```Bash
 $ python -m pip install --update nibabies-wrapper
@@ -201,7 +203,9 @@ However, as infant brains can vastly differ depending on age, providing the foll
 
 ---
 
-## Usage (cont.)
+## Usage
+
+### FreeSurfer License
 
 Additionally, *NiBabies* uses FreeSurfer tools, which require a license to run.
 
@@ -209,9 +213,9 @@ To obtain a FreeSurfer license, simply register for free at https://surfer.nmr.m
 
 --
 
-The license can be passed in using the flag `--fs-license-file`.
+The license can be passed in by using the flag `--fs-license-file`.
 
-However, when using the `nibabies-wrapper`, if `$FSLICENSE` is set to the license's path, it will be detected and automatically used.
+However, if using the `nibabies-wrapper` and `$FSLICENSE` is set to the license's path, it will be detected and automatically used.
 
 
 ---
@@ -234,7 +238,7 @@ docker /path/to/data /output/path participant \  # required arguments
 
 --
 
-We should get something resembling this:
+We will get an output similar to this:
 
 ```bash
 RUNNING: docker run --rm -e DOCKER_VERSION_8395080871=20.10.6 -it \
@@ -246,3 +250,52 @@ nipreps/nibabies:21.0.2 /data /out participant \
 --age-months 2 --participant-label 01 \
 --segmentation-atlases-dir /opt/segmentations
 ```
+
+--
+
+*NiBabies* should now be running!
+
+---
+
+## Results
+
+After some processing hours, *NiBabies* should complete and produce outputs. These outputs conform to the BIDS Derivatives specification.
+
+--
+
+- Visual QA (quality assessment) reports: one HTML per subject, that allows the user a thorough visual assessment of the quality of processing and ensures the transparency of *NiBabies* operation.
+<a href="sample-report/sub-01.html">Link to sample report</a>
+
+--
+
+- Derivatives (preprocessed data) the input fMRI data ready for analysis, i.e., after the various preparation procedures have been applied.
+For example, INU-corrected versions of the T1-weighted image (per subject), the brain mask, or BOLD images after head-motion correction, slice-timing correction, susceptibility distortion correction, and aligned into the same-subject’s T1w space or in some standard space.
+
+--
+
+The default standard output space for *NiBabies* is the `MNI Infant` template [Fonov 2009].
+
+---
+
+## Future Directions
+
+*NiBabies* is still a young project, but with that comes the advantage of rapid development.
+There are a number of planned features in works, such as:
+
+--
+
+- Producing `T2w` outputs, as well as increased usage of `T2w` images in the reports.
+
+--
+
+- Decreasing reliance on computation-intensive steps.
+Currently, there is work being done with evalutating deep neural networks, which can dramatically improve computing time.
+
+---
+class: center middle
+
+# Thank You
+#### Questions?
+#### Comments?
+#### Critiques?
+##### [Contact us on GitHub](https://github.com/nipreps/nibabies/issues/new/choose)
