@@ -101,9 +101,10 @@ template: BIDS
 
 .pull-right[
 - When converting a dataset to the BIDS format, we recommend validating with the online [BIDS Validator](https://bids-standard.github.io/bids-validator/).
+]
 
 --
-
+.pull-right[
 - Prior to running the workflow, *NiBabies* will run a quick validation to ensure the input dataset is BIDS compliant.
 ]
 
@@ -264,14 +265,28 @@ After some processing hours, *NiBabies* should complete and produce outputs. The
 --
 
 - Visual QA (quality assessment) reports: one HTML per subject, that allows the user a thorough visual assessment of the quality of processing and ensures the transparency of *NiBabies* operation.
+
+--
+
 <a href="sample-report/sub-01.html">Link to sample report</a>
 
+---
+
+## Results
+
+After some processing hours, *NiBabies* should complete and produce outputs. These outputs conform to the BIDS Derivatives specification.
+
+- Derivatives (preprocessed data) the input MRI data ready for analysis, i.e., after the various preparation procedures have been applied.
+
 --
 
-- Derivatives (preprocessed data) the input fMRI data ready for analysis, i.e., after the various preparation procedures have been applied.
+<div align="center" style="margin-top: 1em">
+<img alt="Derivatives" src="assets/derivatives.png" width="50%" height="50%" />
+</div>
+
+???
+
 For example, INU-corrected versions of the T1-weighted image (per subject), the brain mask, or BOLD images after head-motion correction, slice-timing correction, susceptibility distortion correction, and aligned into the same-subject’s T1w space or in some standard space.
-
---
 
 The default standard output space for *NiBabies* is the `MNI Infant` template [Fonov 2009].
 
